@@ -21,6 +21,9 @@
 *.h5ad
 *.h5
 *.parquet
+*.mat
+*.edf
+data/
 
 # Python template exclusions
 
