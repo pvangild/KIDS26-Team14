@@ -26,6 +26,22 @@ Naming the tools and stack early helps the team lead create useful roles and div
 
 [Add a short explanation of the motivation, background, and why the question or problem matters.]
 
+## Analyze Recordings
+
+`analyze_recordings.py` reads every `.mat` recording in a folder and writes a Markdown event-count table. It requires Python with `numpy`, `scipy`, and `matplotlib` installed.
+
+```powershell
+python analyze_recordings.py --data-dir "Z:\path\to\recordings"
+```
+
+To plot a particular event, choose files and events using 1-based numbering after sorting files alphabetically. For example, this plots apnea event 3 from the second file:
+
+```powershell
+python analyze_recordings.py --data-dir "Z:\path\to\recordings" --plot-apnea --file 2 --event 3
+```
+
+Use `--plot-hypopnea` to plot a hypopnea instead. By default, the summary is saved as `event_summary.md`; change that path with `--summary-file`.
+
 ## Roadmap and Milestones
 
 | When | Focus | Expected outcome |
