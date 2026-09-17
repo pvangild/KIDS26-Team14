@@ -26,26 +26,16 @@ This work is motivated by the need for more accessible sleep-apnea evaluation am
 - **Team lead:** Miguel Navarrete () and Lu Xie 
 (lxie3)
 - **Team members and roles:** 
-
-  - Miguel Navarrete (Github ID: **MISSING**): role
-   -   Lu Xie (Github ID: 
-lxie3): role
- 
-
+  - Miguel Navarrete (Github ID: mnavarretem): role
+  - Lu Xie (Github ID: lxie3): role
   - Anna Pittman (Github ID: PittmanAEP ): role
-  - Paul VanGilder (Github ID: **MISSING**  ): role
- 
+  - Paul VanGilder (Github ID: pvangild): role
   - Richa Singh (Github ID: richa-singhx): role
   - Pragyee Neupane (Github ID: pragyeeneupane): role 
- 
   - Prajvala Mysore (Github ID: pmysore-stjude): role 
   - Juliette Kippen (Github ID: juliettekip): role 
-- **Communication: Miguel Navarrete and Lu Xie** 
+- **Communication:** Miguel Navarrete and Lu Xie 
  
-
-
-
-
 
 ## Vision and Mission
 
@@ -62,14 +52,9 @@ lxie3): role
 
 The purpose of this project is to create a reproducible machine-learning workflow for identifying and classifying sleep-disordered breathing events in pediatric physiological recordings. This project addresses important access and reliability problems. Recent evidence from St. Jude APNEA, CSALTS medical trials involving long-term survivors of childhood cancer, and preliminary findings from cHOD17 in pediatric patients suggests that obstructive sleep apnea is highly prevalent in these populations, even though its burden is not explained by traditional risk factors. Obstructive sleep apnea also appears to affect other vulnerable populations, including individuals with sickle cell disease. At St. Jude, the absence of a dedicated sleep clinic can make home sleep apnea testing an important first step for evaluating patients and determining whether an in-lab study or specialized follow-up is needed. Existing commercial scoring algorithms are proprietary and primarily designed for adults from the general population. As such, they may be less reliable when applied to pediatric patients, medically complex populations, or recordings affected by noise, motion, and sensor displacement.
 
-
 The workflow will process synchronized, time-series signals such as thoracic respiratory effort, airflow, oxygen saturation, EEG-derived arousal features, calculated breathing amplitude, and sleep-stage information. By combining evidence across these signals, the project seeks to detect obstructive, central, and mixed apnea events as well as hypopneas, while accounting for timing differences between respiratory changes, oxygen desaturation, and arousals.
 
-
 The project will use annotated pediatric sleep data to develop a baseline detector and machine-learning prototype. Performance will be measured by how accurately the system localizes individual events and how closely its estimated Apnea-Hypopnea Index matches expert-derived values. The project will also examine robustness to artifacts, integration of multiple signal types, and the usefulness of visualizations for reviewing model predictions. The intended result is not a clinical diagnostic device, but a transparent research prototype that demonstrates technical feasibility, identifies model limitations, and establishes a foundation for future validation with home sleep apnea recordings and certified sleep-technologist review.
-
-
-
 
 ## Analyze Recordings
 
