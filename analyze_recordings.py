@@ -1,9 +1,3 @@
-"""Summarize sleep-event recordings and optionally plot one event.
-
-Example:
-    python analyze_recordings.py --data-dir recordings --plot-apnea --file 2 --event 3
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -12,6 +6,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import loadmat
+
+from event_alignment import resolve_event_window
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -125,11 +121,17 @@ def plot_event(
             f"event {event_number} is unavailable."
         )
 
-    start_index, end_index = (int(value) - 1 for value in pairs[event_index])
+    # NOTE: event indices in these files were generated assuming a fixed
+    # nominal 20.0 Hz sample rate (see data_quality_exclusions.md). A
+    # subset of files' actual resampled rate deviates from 20.0 Hz, so we
+    # must convert index -> seconds using that fixed nominal rate, then
+    # locate the corresponding row in *this file's* own time array --
+    # NOT index directly into `data`/`time`, which silently breaks on any
+    # file whose actual sample rate isn't exactly 20.0 Hz.
+    start_time, end_time, start_index, end_index = resolve_event_window(time, pairs[event_index])
     if not (0 <= start_index < len(time) and 0 <= end_index < len(time)):
         raise IndexError(f"{event_type} {event_number} has indices outside the recording.")
 
-    start_time, end_time = time[start_index], time[end_index]
     mask = (time >= start_time - padding_seconds) & (time <= end_time + padding_seconds)
     display_time = time[mask]
     display_data = data[mask]
