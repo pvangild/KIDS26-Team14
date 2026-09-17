@@ -22,8 +22,8 @@ This work is motivated by the need for more accessible sleep-apnea evaluation am
   obstructive apnea and hypopnea events, calculates session-level
   Apnea-Hypopnea Index (AHI), and visualizes predictions alongside the
   underlying signals.
-- **Tools and stack:** Python, Matplotlib
-- **Team lead:** Miguel Navarrete () and Lu Xie 
+- **Tools and stack:** Python, Matplotlib, Github Copilot, Github Repository, VS code
+- **Team lead:** Miguel Navarrete (Github ID: mnavarretem) and Lu Xie 
 (lxie3)
 - **Team members and roles:** 
   - Miguel Navarrete (Github ID: mnavarretem): role
