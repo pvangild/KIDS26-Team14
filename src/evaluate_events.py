@@ -94,6 +94,25 @@ def compute_ahi_mae(predictions_df, val_df):
     mae = np.mean(np.abs(ahi_df["true_ahi"] - ahi_df["predicted_ahi"]))
     return mae, ahi_df
 
+def ahi_mae_by_severity(ahi_df):
+    severity_bins = pd.cut(
+        ahi_df["true_ahi"],
+        bins=[-0.01, 1, 5, 10, float("inf")],
+        labels=["normal", "mild", "moderate", "severe"],
+    )
+    ahi_df = ahi_df.copy()
+    ahi_df["severity"] = severity_bins
+    ahi_df["abs_error"] = np.abs(ahi_df["true_ahi"] - ahi_df["predicted_ahi"])
+
+    summary = ahi_df.groupby("severity", observed=True).agg(
+        n_subjects=("study_number", "count"),
+        mean_true_ahi=("true_ahi", "mean"),
+        mean_predicted_ahi=("predicted_ahi", "mean"),
+        mae=("abs_error", "mean"),
+    ).reset_index()
+
+    return summary
+
 def find_best_threshold(predictions_df, label, prob_column, thresholds=np.arange(0.1, 0.6, 0.05)):
     best_threshold = None
     best_f1 = -1
@@ -160,3 +179,7 @@ if __name__ == "__main__":
 
     final_mae, final_ahi_df = compute_ahi_mae(predictions_df, val_df)
     print(f"\nFinal tuned AHI MAE: {final_mae:.2f} events/hour")
+
+    severity_summary = ahi_mae_by_severity(final_ahi_df)
+    print("\nAHI MAE by severity:")
+    print(severity_summary)
