@@ -158,3 +158,5 @@ dmypy.json
 .pyre/
 .myenv/
 requirements.txt
+
+!data/val_subjects.csv
